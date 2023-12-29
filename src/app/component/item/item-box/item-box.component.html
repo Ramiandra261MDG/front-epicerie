@@ -1,0 +1,123 @@
+<div id="caisse">
+  <h1 nz-typography>Caisse</h1>
+  <div nz-row>
+    <div nz-col nzSpan="12">
+      <h2 nz-typography>Les produits</h2>
+      <!--  -->
+      <nz-spin [nzSpinning]="loading">
+        <nz-table
+          #itemTable
+          nzBordered
+          [nzData]="data"
+          [nzFrontPagination]="false"
+          [nzTotal]="totalItems"
+          [nzPageIndex]="currentPage"
+          [nzPageSize]="10"
+          [nzScroll]="{ y: '400px' }"
+          (nzPageIndexChange)="handlePageIndexChange($event)"
+          nzTableLayout="fixed"
+        >
+          <thead>
+            <tr>
+              <th
+                *ngFor="let column of listOfColumns"
+                [nzSortOrder]="column.sortOrder"
+                [nzSortFn]="column.sortFn"
+                [nzSortDirections]="column.sortDirections"
+                [nzWidth]="column.name === 'Nom du produit' ? '150px' : null"
+              >
+                {{ column.name }}
+              </th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let data of itemTable.data; let i = index">
+              <td>{{ data.name }}</td>
+              <td>{{ data.price | number : "1.2-2" }} Ariary</td>
+              <td>
+                <input
+                  nz-input
+                  placeholder="Quantité"
+                  type="number"
+                  style="width: 100px"
+                  [(ngModel)]="data.quantity"
+                  [ngModelOptions]="{ standalone: true }"
+                />
+                <button nz-button nzType="primary" (click)="addToTicket(data)">
+                  Ajouter
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </nz-table>
+      </nz-spin>
+      <!--  -->
+    </div>
+    <div nz-col nzSpan="12">
+      <h2 nz-typography>Ticket du client</h2>
+      <!--  -->
+      <div class="ticket" id="divToExport">
+        <h3 nz-typography>Ticket</h3>
+        <nz-divider></nz-divider>
+        <div
+          class="ticket-row"
+          nz-row
+          [nzGutter]="[16, 24]"
+          *ngFor="let t of clientTicket; let i = index"
+        >
+          <div nz-col class="gutter-row" [nzSpan]="4">
+            <div class="inner-box">
+              <p style="text-align: center">{{ t.name }}</p>
+            </div>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="4">
+            <div class="inner-box">
+              <p style="text-align: center">
+                {{ t.price | number : "1.2-2" }} Ariary
+              </p>
+            </div>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="4">
+            <div class="inner-box">
+              <p style="text-align: center">{{ t.qte }}</p>
+            </div>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="4">
+            <div class="inner-box">
+              <p style="text-align: center">
+                {{ t.totalPrice | number : "1.2-2" }} Ariary
+              </p>
+            </div>
+          </div>
+          <div nz-col class="gutter-row" [nzSpan]="4">
+            <div class="inner-box">
+              <span
+                class="undo"
+                nz-icon
+                nzType="undo"
+                nzTheme="outline"
+                (click)="cancelItemTicket(i)"
+              ></span>
+            </div>
+          </div>
+        </div>
+        <nz-divider></nz-divider>
+        <div class="btn-validation-container">
+          <h4 *ngIf="clientPay" style="margin-right: 50px">
+            Totaux: {{ clientPay | number : "1.2-2" }} Ariary
+          </h4>
+          <button
+            nz-button
+            nzType="primary"
+            style="width: 150px"
+            (click)="exportToPDF()"
+          >
+            Valider
+          </button>
+        </div>
+      </div>
+      <!--  -->
+    </div>
+  </div>
+</div>

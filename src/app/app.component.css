@@ -1,0 +1,23 @@
+.wrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+
+  height: 100vh;
+}
+
+.menu {
+  width: 240px;
+}
+
+.content {
+  width: 100%;
+}
+
+button {
+  margin-bottom: 12px;
+}
+
+a::before {
+  content: none;
+}

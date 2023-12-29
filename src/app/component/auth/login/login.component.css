@@ -1,0 +1,17 @@
+[nz-row] {
+  height: 100vh;
+  background-color: rgb(236, 236, 236);
+}
+
+.center-login {
+  align-self: center;
+}
+
+.card-login {
+  display: flex;
+  justify-content: center;
+}
+
+.login-form-button {
+  width: 100%;
+}

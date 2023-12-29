@@ -1,0 +1,20 @@
+.login {
+  display: grid;
+  place-items: center;
+  height: 90vh;
+}
+
+.login-content {
+  align-items: center;
+}
+
+.card {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  max-height: 600px; /* ajustez la hauteur maximale selon vos besoins */
+}
+
+.card-img-top {
+  width: 50%;
+  margin: 0 auto;
+}

@@ -1,0 +1,48 @@
+#caisse {
+  width: 95%;
+  margin: 0 auto;
+}
+
+h1 {
+  color: #fff;
+  margin: 10px 0;
+  text-align: center;
+}
+
+h2 {
+  color: #fff;
+}
+
+[nz-col] {
+  padding: 0 15px;
+}
+
+.ticket {
+  background-color: #fff;
+  padding: 10px 0;
+}
+
+h3 {
+  text-align: center;
+  margin-top: 15px;
+  padding: 0;
+  font-size: 1.6em;
+}
+
+nz-divider {
+  color: black;
+}
+
+.btn-validation-container {
+  display: flex;
+  justify-content: end;
+  margin-right: 15px;
+}
+
+.ticket-row {
+justify-content:space-between;
+}
+
+.undo:hover {
+  cursor: pointer;
+}
